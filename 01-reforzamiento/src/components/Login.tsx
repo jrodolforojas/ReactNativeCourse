@@ -74,6 +74,12 @@ export const Login = () => {
         })
     }
 
+    const logout = () => {
+        dispatch({
+            type: 'logout'
+        });
+    }
+
     if (validando) {
         return (
             <>
@@ -99,7 +105,7 @@ export const Login = () => {
                 ? (
                     <button 
                         className= "btn btn-danger"
-                       > 
+                        onClick = {logout}> 
                             Logout 
                     </button>
                 )
