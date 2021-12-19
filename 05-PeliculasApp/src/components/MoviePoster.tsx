@@ -1,34 +1,54 @@
-import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
-import { Movie } from '../types/movie.interface';
+import React from 'react'
+import { Image, StyleSheet, View } from 'react-native'
+import { MovieFull } from '../interfaces/movieInterface';
+import { useNavigation } from '@react-navigation/core';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+
 
 interface Props {
-    movie: Movie;
+    movie: MovieFull;
+    height?: number;
+    width?: number;
 }
 
-export const MoviePoster = ({ movie }: Props) => {
+export const MoviePoster = ({ movie, height = 420, width = 300 }: Props) => {
 
-    const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+    const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+
+    const navigation = useNavigation();
+
     return (
-        <View style={{
-            width: 300,
-            height: 420,
-        }}>
-            <View style={style.imageContainer}>
+        <TouchableOpacity
+            onPress={() => navigation.navigate('DetailScreen', movie)}
+            activeOpacity={0.8}
+            style={{
+                width,
+                height,
+                marginHorizontal: 2,
+                paddingBottom: 20,
+                paddingHorizontal: 7
+            }}
+        >
+            <View style={styles.imageContainer}>
                 <Image
                     source={{ uri }}
-                    style={style.image}
+                    style={styles.image}
                 />
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
-const style = StyleSheet.create({
+
+const styles = StyleSheet.create({
+    image: {
+        flex: 1,
+        borderRadius: 18,
+    },
     imageContainer: {
         flex: 1,
+        borderRadius: 18,
         shadowColor: "#000",
-        borderRadius:18,
         shadowOffset: {
             width: 0,
             height: 10,
@@ -36,10 +56,6 @@ const style = StyleSheet.create({
         shadowOpacity: 0.24,
         shadowRadius: 7,
 
-        elevation: 10,
-    },
-    image: {
-        flex: 1,
-        borderRadius: 18,
+        elevation: 9,
     }
-})
+});
