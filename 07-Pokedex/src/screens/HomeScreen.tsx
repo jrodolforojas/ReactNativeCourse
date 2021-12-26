@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, Image, FlatList, ActivityIndicator } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { FadeInImage } from '../components/FadeInImage';
-import { PokemonCard } from '../components/PokemonCard';
+import { PokemonCard } from '../components/PokemonCard';  
 import { usePokemonPaginated } from '../hooks/usePokemonPaginated';
 import { styles } from '../theme/appTheme';
 
